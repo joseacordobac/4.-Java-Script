@@ -1,10 +1,4 @@
 
-
-//Declaramos variables
-var operandoa;
-var operandob;
-var operacion;
-
     var resultado = document.getElementById('display');
     var reset = document.getElementById('on');
     var suma = document.getElementById('mas');
@@ -25,56 +19,123 @@ var operacion;
     var signo = document.getElementById('sign')
     var punto = document.getElementById("punto")
 
-    //eventos de click
-    if (resultado.textContent.length < 8) {
-        uno.onclick = function (e) {
-            resultado.textContent = resultado.textContent + "1";
+    var pressedNumber;
+       //eventos de click      
+
+    
+    function validarPrimero() {
+        if (resultado.textContent.length === 1 && resultado.textContent === "0" ) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    function isMaxNumber() {
+        if (resultado.textContent.length === 8) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function showNumber(numberToShow) {
+        if (validarPrimero()) {
+
+            resultado.textContent = numberToShow;
+        } else {
+            if (!isMaxNumber()) {  
+                resultado.textContent = resultado.textContent + numberToShow;              
+            }
         }
     }   
 
 
-    uno.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "1";
+    function isPointShown() {
+        var hasPoint = resultado.textContent.indexOf(".");
+
+        if (!isMaxNumber && !hasPoint) {
+            resultado.textContent = ".";            
+        }
     }
+       
+    uno.onclick = function (e) {
+        pressedNumber = "1";
+      showNumber(pressedNumber);
+    } 
 
     dos.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "2";
+        pressedNumber = "2";
+        showNumber(pressedNumber);
+    } 
 
-    }
     tres.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "3";
-    }
+        pressedNumber = "3";
+        showNumber(pressedNumber);
+    
+} 
+
     cuatro.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "4";
-    }
+        pressedNumber = "4";
+        showNumber(pressedNumber);
+    
+} 
+
     cinco.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "5";
-    }
+        pressedNumber = "5";
+        showNumber(pressedNumber);
+    
+} 
+
     seis.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "6";
-    }
+        pressedNumber = "6";
+        showNumber(pressedNumber);
+   
+} 
+
     siete.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "7";
-    }
+        pressedNumber = "7";
+        showNumber(pressedNumber);
+
+} 
+
     ocho.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "8";
-    }
+        pressedNumber = "8";
+        showNumber(pressedNumber);
+    
+} 
     nueve.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "9";
-    }
+        pressedNumber = "9";
+        showNumber(pressedNumber);
+   
+} 
+
     cero.onclick = function (e) {
-        resultado.textContent = resultado.textContent + "0";
-    }
+        pressedNumber = "0";
+        showNumber(pressedNumber);
+   
+} 
+
 
     punto.onclick = function (e) {
-        resultado.textContent = resultado.textContent + ".";
-    }
-
+        pressedNumber = "."
+        isPointShown(pressedNumber);
+     }
+     
     signo.onclick = function (e) {
         resultado.textContent = resultado.textContent * "-1"
-    }     
-        
+    }    
+    
+    
+ 
+
     //Operaciones
+
+    var operandoa;
+    var operandob;
+    var operacion;
+
     reset.onclick = function (e) {
         resetear();
     }
@@ -98,11 +159,11 @@ var operacion;
         operacion = "/";
         limpiar();
     }
+
     igual.onclick = function (e) {
         operandob = resultado.textContent;
         resolver();
     }
-
 
 function limpiar() {
     resultado.textContent = "";
@@ -115,27 +176,33 @@ function resetear() {
     operacion = "";
 }
 
+
 function resolver() {
-    var res = 0;
+    var solucion = 0;
     switch (operacion) {
         case "+":
-            res = parseFloat(operandoa) + parseFloat(operandob);
+            solucion = parseFloat(operandoa) + parseFloat(operandob);
             break;
 
         case "-":
-            res = parseFloat(operandoa) - parseFloat(operandob);
+            solucion = parseFloat(operandoa) - parseFloat(operandob);
             break;
 
         case "*":
-            res = parseFloat(operandoa) * parseFloat(operandob);
+            solucion = parseFloat(operandoa) * parseFloat(operandob);
             break;
 
         case "/":
-            res = parseFloat(operandoa) / parseFloat(operandob);
+            solucion = parseFloat(operandoa) / parseFloat(operandob);
             break;
     }
     resetear();
-    resultado.textContent = res;
+    showNumber(solucion.toString());
 }
+
+
+
+
+
 
 
