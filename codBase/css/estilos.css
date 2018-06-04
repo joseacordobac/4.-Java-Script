@@ -47,8 +47,17 @@ body{
 
 /*Efecto clic boton */
 
-.tamaño{
-  width: 10px;
+.press{
+    animation-name: press;
+    animation-duration: 50ms;
+    transform-origin:70% 70%;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+@keyframes press {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1); }
 }
 
 
